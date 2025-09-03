@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>intervAI - Your Live Interview Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="py-4 px-4 md:px-8 glass-card sticky top-4 mx-4 md:mx-8 z-50">
+        <nav class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-white flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-indigo-400"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                intervAI
+            </h1>
+            <a href="#interview-section-container" class="primary-btn font-semibold py-2 px-5 rounded-lg shadow-lg">Start Assistant</a>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-16">
+        <!-- Hero Section -->
+        <section class="text-center my-12 md:my-24">
+            <h2 class="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+                Never Get Stumped in an Interview Again
+            </h2>
+            <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-300">
+                Our AI-powered assistant listens to the interviewer's question and instantly provides a structured, high-quality answer for you to adapt.
+            </p>
+            <a href="#interview-section-container" class="primary-btn text-lg font-bold py-4 px-8 rounded-full shadow-xl mt-10 inline-block">
+                Launch Live Assistant
+            </a>
+        </section>
+
+        <!-- Interview Section -->
+        <div id="interview-section-container" class="min-h-[500px] my-12 md:my-24 flex items-center justify-center">
+            <section id="setup-section" class="w-full max-w-2xl mx-auto text-center p-8 glass-card">
+                 <div class="mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-indigo-400"><path d="M17 18a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2"></path><rect x="3" y="4" width="18" height="18" rx="2"></rect><circle cx="12" cy="10" r="2"></circle><line x1="8" y1="2" x2="8" y2="4"></line><line x1="16" y1="2" x2="16" y2="4"></line></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">Set Up Your Live Session</h3>
+                <p class="text-gray-300 mb-6">Enter the job role to get context-aware answers.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input type="text" id="job-role-input" class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-400 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-400 focus:outline-none" placeholder="e.g., Senior Data Analyst...">
+                    <button id="start-interview-btn" class="primary-btn font-bold py-3 px-8 rounded-lg w-full sm:w-auto">Start Session</button>
+                </div>
+            </section>
+
+            <section id="interview-assistant-section" class="hidden w-full max-w-4xl mx-auto p-8 glass-card">
+                <div id="mic-controls" class="text-center">
+                    <button id="listen-btn" class="listen-btn font-bold py-4 px-8 rounded-full text-lg shadow-lg flex items-center justify-center mx-auto">
+                        <svg id="mic-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                        <span id="listen-btn-text">Listen for Question</span>
+                    </button>
+                    <p id="status-text" class="text-gray-400 mt-4 min-h-[20px]"></p>
+                </div>
+
+                <div id="loader-container" class="hidden text-center my-8">
+                    <div class="loader mx-auto"></div>
+                    <p class="mt-4 text-gray-300">Generating the perfect answer...</p>
+                </div>
+
+                <div id="result-container" class="hidden mt-8 space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-indigo-300 mb-2">Heard Question:</h3>
+                        <p id="transcribed-question-text" class="text-xl text-white bg-white/5 p-4 rounded-lg"></p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-indigo-300 mb-2">Suggested Answer:</h3>
+                        <div id="generated-answer-text" class="prose prose-invert max-w-none text-gray-200 bg-white/5 p-4 rounded-lg"></div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                     <button id="end-interview-btn" class="primary-btn opacity-80 font-bold py-2 px-6 rounded-lg">End Session</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
